@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <title>環保分類助手</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 2em auto; }
+        input[type=text] { width: 100%; padding: 0.5em; margin: 1em 0; }
+        button { padding: 0.5em 1em; }
+        img { max-width: 100%; margin-top: 1em; }
+        .result { margin-top: 1em; padding: 1em; border: 1px solid #ccc; background: #f9f9f9; }
+        .recyclable { color: green; }
+        .general { color: red; }
+        .unknown { color: gray; }
+    </style>
+</head>
+<body>
+    <h1>環保分類助手</h1>
+    <form method="POST">
+        <label for="image_url">輸入垃圾圖片網址：</label>
+        <input type="text" id="image_url" name="image_url" placeholder="請輸入圖片網址" value="{{ image_url|default('') }}" />
+        <button type="submit">分類</button>
+    </form>
+
+    {% if result %}
+    <div class="result
+        {% if category == '可回收物' %} recyclable
+        {% elif category == '一般垃圾' %} general
+        {% else %} unknown
+        {% endif %}
+    ">
+        <h3>分類結果：{{ category }}</h3>
+        <p>{{ result }}</p>
+        {% if image_url %}
+            <img src="{{ image_url }}" alt="垃圾圖片" />
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>

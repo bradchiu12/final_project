@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+
+# Virtual environment
+venv/
+.env
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Docker
+*.container
+*.pid
+
+# Flask cache
+instance/
+*.db
